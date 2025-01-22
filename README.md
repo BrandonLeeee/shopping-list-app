@@ -27,8 +27,7 @@ src/
 ```
 
 Screenshots
-![image](https://github.com/user-attachments/assets/2a61e4af-cb3c-44e6-bf64-933033b2444c)
-
+![image](https://github.com/user-attachments/assets/7dd471e8-7984-43b5-ba78-cc2e4b9cd33d)
 
 ## Technologies Used
 
