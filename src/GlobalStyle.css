@@ -1,0 +1,134 @@
+body {
+    margin: auto;
+    font-family: "Jost", sans-serif;
+    text-align: center;
+    max-width: 980px;
+    background-color: #cbcacad4;
+}
+
+.main-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.items-container {
+    max-width: 720px;
+}
+
+.shopping-cart-container {
+    border: 1px solid #ebebeb;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    width: 240px;
+    height: 100%;
+}
+
+.title {
+    text-transform: uppercase;
+}
+
+.wrap-showcase {
+    padding: 10px 0;
+    text-align: start;
+}
+
+.showcase-item {
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
+    max-width: 200px;
+    min-height: 200px;
+    min-width: 200px;
+    padding: 10px;
+    position: relative;
+    vertical-align: top;
+    white-space: normal;
+    cursor: pointer;
+}
+
+.showcase-item-name {
+    white-space: normal;
+}
+
+.showcase-item-brand {
+    font-weight: bold;
+}
+
+.item-price-group {
+    font-weight: bold;
+}
+
+.showcase-button {
+    display: none;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.showcase-item:hover .showcase-button {
+    display: block;
+}
+
+.container-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    height: 100%;
+}
+
+.cart-title-header,
+.cart-to-buy {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    align-items: center;
+}
+
+.cart-title-p {
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: left;
+}
+
+.cart-title-p:first-child {
+    width: 140px;
+}
+
+.cart-title-p:nth-child(2) {
+    width: 50px;
+    text-align: center;
+}
+
+.cart-title-p:last-child {
+    width: 25px;
+    text-align: center;
+}
+
+.cart-item-name {
+    font-size: 0.8rem;
+    text-align: left;
+}
+
+.cart-item-name:first-child {
+    width: 140px;
+}
+
+.cart-item-name:nth-child(2) {
+    width: 50px;
+    text-align: center;
+}
+
+.cart-item-name:last-child {
+    width: 25px;
+    text-align: center;
+}
