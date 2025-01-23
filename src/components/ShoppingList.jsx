@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import ShoppingItem from "./ShoppingItem";
 import { ShoppingCartContext } from "../context/ShoppingCartContext";
+import { itemsList } from "../data/Products";
 
 const ShoppingList = () => {
-  const { addToCart, itemsList } = useContext(ShoppingCartContext);
+  const { addToCart } = useContext(ShoppingCartContext);
 
   const handeAddToCart = (item) => {
     addToCart(item);
