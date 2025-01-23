@@ -2,6 +2,7 @@
 
 This is a simple **React** application designed for practice and learning. It includes a shopping list of products and a shopping cart to simulate adding and viewing items. The project demonstrates the use of key React features such as `useState`, and `useContext`.
 
+[Demo](https://shoppinglistlee.vercel.app/)
 ## Features
 
 - **Dynamic Product Listing**: Display a list of products with details like name, brand, and price.
