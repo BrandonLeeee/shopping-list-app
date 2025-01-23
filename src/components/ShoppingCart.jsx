@@ -42,13 +42,11 @@ const ShoppingCart = () => {
         <div className={"cart-total-container"}>
           <div className={"cart-total-title"}>
             <div className={"cart-total-text"}>Total:</div>
-            <div className={"cart-total-value"}>{`$${totalCart}`}</div>
+            <div className={"cart-total-value"}>{`$ ${totalCart}`}</div>
           </div>
           <div className={"cart-total-button"}>
-            {shoppingCart.length > 0 ? (
-              <button className={"cart-checkout-button"}>Go to checkout</button>
-            ) : (
-              ""
+            {shoppingCart.length > 0 && (
+              <button className="cart-checkout-button">Go to checkout</button>
             )}
           </div>
         </div>

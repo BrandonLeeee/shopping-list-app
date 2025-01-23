@@ -1,7 +1,7 @@
 const ShoppingItem = ({ itemName, itemPrice, itemImg, itemBrand, onClick }) => {
   return (
     <div className={"showcase-item"}>
-      <img style={{ width: "200px" }} src={itemImg} alt="Product Placehold" />
+      <img className={"showcase-img"} src={itemImg} alt="Product Placehold" />
       <div className={"wrap-showcase"}>
         <div className={"showcase-item-name"}>
           <span className={"showcase-item-brand"}>{itemBrand}</span>
