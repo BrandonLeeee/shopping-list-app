@@ -1,19 +1,23 @@
 import ShoppingList from "./components/ShoppingList";
-import ShoppingCart from "./components/ShoppingCart";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import "./GlobalStyle.css";
+import Header from "./components/Header";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
 
 function App() {
   return (
-    <ShoppingCartProvider>
-      <div>
-        <h1 className={"title"}>Shopping List</h1>
-        <div className={"main-container"}>
-          <ShoppingList />
-          <ShoppingCart />
-        </div>
-      </div>
-    </ShoppingCartProvider>
+    <BrowserRouter>
+      <ShoppingCartProvider>
+        <Routes>
+          <Route path="/" element={<Header />}>
+            <Route index element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+          </Route>
+        </Routes>
+      </ShoppingCartProvider>
+    </BrowserRouter>
   );
 }
 
