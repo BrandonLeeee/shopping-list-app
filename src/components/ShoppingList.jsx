@@ -15,9 +15,10 @@ const ShoppingList = () => {
   const handeAddToCart = (item) => {
     addToCart(item);
   };
+
   return (
     <>
-      <div className="flex-row">
+      <div className="flex-column">
         <div className="section-title">
           <h3>
             Grab the <span className="highlight">Best deals</span>
@@ -31,6 +32,7 @@ const ShoppingList = () => {
             laptopData.products.map((item) => (
               <ShoppingItem
                 key={item.id}
+                itemId={item.id}
                 itemName={item.title}
                 itemPrice={item.price}
                 itemBrand={item.brand}

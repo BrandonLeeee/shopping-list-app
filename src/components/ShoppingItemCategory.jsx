@@ -1,9 +1,9 @@
 import React from "react";
 
-const ShoppingItemCategory = ({ categoryName }) => {
+const ShoppingItemCategory = ({ categoryName, categoryImg }) => {
   return (
     <div className="showcase-category">
-      <img src="https://dummyjson.com/image/150x150" alt="" />
+      <img src={categoryImg} alt="" />
       <p>{categoryName}</p>
     </div>
   );

@@ -1,7 +1,36 @@
-const ShoppingItem = ({ itemName, itemPrice, itemImg, itemBrand, onClick }) => {
+import { Button } from "./ui/button";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+
+const ShoppingItem = ({
+  itemId,
+  itemName,
+  itemPrice,
+  itemImg,
+  itemBrand,
+  onClick,
+}) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    onClick();
+    toast(`${itemName} has been added!`, {
+      duration: 2000,
+    });
+  };
+
+  const handleNavigate = (itemId) => {
+    navigate(`/item/${itemId}`);
+  };
+
   return (
     <div className="showcase-item">
-      <img className="showcase-img" src={itemImg} alt="Product Placehold" />
+      <img
+        className="showcase-img"
+        src={itemImg}
+        alt="Product Placehold"
+        onClick={() => handleNavigate(itemId)}
+      />
       <div className="showcase-wrapper">
         <div className="showcase-item-name">
           <span className="showcase-item-brand">{itemBrand}</span>
@@ -11,9 +40,9 @@ const ShoppingItem = ({ itemName, itemPrice, itemImg, itemBrand, onClick }) => {
           <span className="price-value">{`$ ${itemPrice}`}</span>
         </div>
       </div>
-      <button className="showcase-button" onClick={onClick}>
+      <Button size="sm" className="showcase-button" onClick={handleClick}>
         Add to Cart
-      </button>
+      </Button>
     </div>
   );
 };
