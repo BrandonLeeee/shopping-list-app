@@ -48,11 +48,11 @@ const ItemDetails = () => {
 
   return (
     <div className="bg-white">
-      <div className="pt-6">
-        <div className="text-left mb-5 flex flex-col mx-auto max-w-7xl">
+      <div className="pt-6 max-w-custom1382 mx-auto">
+        <div className="text-left mb-5 flex flex-col lg:mx-auto">
           {/* Image Gallery */}
-          <div className="flex-1 flex items-center justify-center bg-gray-200 rounded-md h-full sm:mx-6 lg:mx-8 lg:mt-5">
-            <div className="flex justify-center items-end gap-4 mb-10">
+          <div className="flex-1 flex items-center justify-center bg-gray-200 rounded-md h-full mx-3 sm:mx-4 md:mx-6">
+            <div className="flex md:flex-row justify-center items-center gap-4 mb-10 flex-col">
               {[data.images[1], data.images[0], data.images[2]]
                 .filter((img) => img !== undefined)
                 .map(
@@ -62,7 +62,7 @@ const ItemDetails = () => {
                         key={index}
                         alt={data.title}
                         src={img}
-                        className="hidden lg:block w-1/4 h-auto rounded-lg object-cover"
+                        className="w-1/2 h-auto md:w-1/4 rounded-lg object-cover"
                       />
                     )
                 )}
@@ -70,7 +70,7 @@ const ItemDetails = () => {
           </div>
 
           {/* Data Info */}
-          <div className="mx-auto max-w-7xl mx-4 mt-10 mb-16 sm:mx-6 flex flex-col lg:mx-8 lg:mt-5 lg:flex-row lg:gap-8">
+          <div className="mx-auto max-w-7xl mx-3 sm:mx-4 md:mx-6 mt-10 mb-16 flex flex-col lg:flex-row lg:gap-8">
             {/* Title and Description */}
             <div className="flex-1 lg:border-r lg:border-gray-200 lg:pr-8">
               <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
