@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import ItemDetails from "./pages/ItemDetails";
+import ItemsByCategory from "./pages/ItemsByCategory";
 
 function App() {
   return (
@@ -14,6 +15,10 @@ function App() {
           <Route path="/" element={<Header />}>
             <Route index element={<Home />} />
             <Route path="/item/:id" element={<ItemDetails />} />
+            <Route
+              path="/category/:categorySlug"
+              element={<ItemsByCategory />}
+            />
             <Route path="/cart" element={<Cart />} />
           </Route>
         </Routes>

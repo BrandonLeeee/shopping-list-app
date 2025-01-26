@@ -33,6 +33,7 @@ const ShoppingCategory = () => {
             .map((category, index) => (
               <ShoppingItemCategory
                 key={index}
+                categorySlug={category.slug}
                 categoryName={category.name}
                 categoryImg={categoryImages[index]}
               />

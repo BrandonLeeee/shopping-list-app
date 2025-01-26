@@ -2,8 +2,6 @@ import useFetch from "@/hooks/useFetch";
 import { useParams } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback } from "@radix-ui/react-avatar";
-import { CiUser } from "react-icons/ci";
 import IsLoading from "@/components/IsLoading";
 import { useContext } from "react";
 import { ShoppingCartContext } from "@/context/ShoppingCartContext";
@@ -52,7 +50,7 @@ const ItemDetails = () => {
         <div className="text-left mb-5 flex flex-col lg:mx-auto">
           {/* Image Gallery */}
           <div className="flex-1 flex items-center justify-center bg-gray-200 rounded-md h-full mx-3 sm:mx-4 md:mx-6">
-            <div className="flex md:flex-row justify-center items-center gap-4 mb-10 flex-col">
+            <div className="flex md:flex-row justify-center items-center gap-4 mb-4 flex-col">
               {[data.images[1], data.images[0], data.images[2]]
                 .filter((img) => img !== undefined)
                 .map(
