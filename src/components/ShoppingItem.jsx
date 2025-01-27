@@ -1,6 +1,8 @@
 import { Button } from "./ui/button";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { SearchContext } from "@/contexts/SearchContext";
 
 const ShoppingItem = ({
   itemId,
@@ -12,6 +14,8 @@ const ShoppingItem = ({
 }) => {
   const navigate = useNavigate();
 
+  const { setSearch } = useContext(SearchContext);
+
   const handleClick = () => {
     onClick();
     toast(`${itemName} has been added!`, {
@@ -21,6 +25,7 @@ const ShoppingItem = ({
 
   const handleNavigate = (itemId) => {
     navigate(`/item/${itemId}`);
+    setSearch("");
   };
 
   return (

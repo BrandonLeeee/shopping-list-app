@@ -21,14 +21,8 @@ const TopBrands = () => {
 
   return (
     <div className="flex-column">
-      <h3>
-        Top{" "}
-        <span
-          className="
-        highlight"
-        >
-          Eletronics Brand
-        </span>
+      <h3 className="text-xl">
+        Top <span className="text-blue-400">Eletronics Brand</span>
       </h3>
       <div className="underline"></div>
       <div className="showcase-brand">

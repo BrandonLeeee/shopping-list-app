@@ -3,16 +3,15 @@ import { useParams } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { Button } from "@/components/ui/button";
 import IsLoading from "@/components/IsLoading";
-import { useContext } from "react";
-import { ShoppingCartContext } from "@/context/ShoppingCartContext";
+import { useContext, useEffect, useRef } from "react";
+import { ShoppingCartContext } from "@/contexts/ShoppingCartContext";
 import { toast } from "sonner";
 
 const ItemDetails = () => {
-  const { id } = useParams();
+  const { urlId } = useParams();
   const { addToCart } = useContext(ShoppingCartContext);
-
   const { data, loading, error } = useFetch(
-    `https://dummyjson.com/products/${id}`
+    `https://dummyjson.com/products/${urlId}`
   );
 
   const handeAddToCart = (e) => {
@@ -68,9 +67,9 @@ const ItemDetails = () => {
           </div>
 
           {/* Data Info */}
-          <div className="mx-auto max-w-7xl mx-3 sm:mx-4 md:mx-6 mt-10 mb-16 flex flex-col lg:flex-row lg:gap-8">
+          <div className=" max-w-7xl mt-2 mx-3 sm:mx-4 md:mx-6 flex flex-col lg:flex-row lg:gap-8">
             {/* Title and Description */}
-            <div className="flex-1 lg:border-r lg:border-gray-200 lg:pr-8">
+            <div className="flex-1 lg:border-r lg:border-gray-200 lg:pr-8 ">
               <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
                 {data.title}
               </h1>

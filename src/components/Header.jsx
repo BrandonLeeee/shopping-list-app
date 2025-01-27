@@ -3,13 +3,17 @@ import { Outlet, Link } from "react-router-dom";
 import { MdShoppingCart } from "react-icons/md";
 import { CiUser } from "react-icons/ci";
 import { Toaster } from "sonner";
-import { ShoppingCartContext } from "../context/ShoppingCartContext";
+import { ShoppingCartContext } from "../contexts/ShoppingCartContext";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
+import { SearchContext } from "@/contexts/SearchContext";
+import SearchResults from "@/pages/SearchResuts";
 
 const Header = () => {
   const { shoppingCart } = useContext(ShoppingCartContext);
   const [count, setCount] = useState(0);
+  const useSearch = () => useContext(SearchContext);
+  const { search, onSearchChange } = useSearch();
 
   {
     /*Update badge counter */
@@ -39,6 +43,8 @@ const Header = () => {
             <input
               className="flex h-9 w-full rounded-md border border-input bg-white px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm md:w-[100px] lg:w-[400px]"
               type="text"
+              value={search}
+              onChange={onSearchChange}
               placeholder="Search product"
             />
           </div>
@@ -76,9 +82,8 @@ const Header = () => {
         </div>
       </header>
 
-      <div>
-        <Outlet />
-      </div>
+      {search.length > 0 ? <SearchResults extQuery={search} /> : <Outlet />}
+
       <Toaster />
     </>
   );

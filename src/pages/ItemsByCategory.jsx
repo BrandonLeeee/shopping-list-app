@@ -1,5 +1,6 @@
+import IsLoading from "@/components/IsLoading";
 import ShoppingItem from "@/components/ShoppingItem";
-import { ShoppingCartContext } from "@/context/ShoppingCartContext";
+import { ShoppingCartContext } from "@/contexts/ShoppingCartContext";
 import useFetch from "@/hooks/useFetch";
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
@@ -16,14 +17,26 @@ const ItemsByCategory = () => {
     addToCart(item);
   };
 
-  console.log(data);
+  if (loading)
+    return (
+      <div>
+        <IsLoading />
+      </div>
+    );
+  if (error) return <div>Error: {error.message}</div>;
+  if (!data) return <div>No data found</div>;
 
   return (
     <>
       <div className="flex-column">
         <div className="section-title">
           <h3>
-            Grab the <span className="highlight">Best deals</span>
+            Grab the{" "}
+            <span className="highlight">
+              {" "}
+              best deals on{" "}
+              <span className="capitalize">{data.products[0].category}</span>
+            </span>
           </h3>
           <div className="underline"></div>
         </div>

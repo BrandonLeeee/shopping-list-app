@@ -20,8 +20,8 @@ const ShoppingCategory = () => {
 
   return (
     <div className="flex-column">
-      <h3 className="section-title">
-        Shop from <span className="highlight">Categories</span>
+      <h3 className="text-xl">
+        Shop from <span className="text-blue-400">Categories</span>
       </h3>
       <div className="underline"></div>
       <div className="categories-container">

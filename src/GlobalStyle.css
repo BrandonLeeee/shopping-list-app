@@ -148,7 +148,7 @@ body {
 
 .showcase-item {
     border: 1px solid var(--background-color);
-    border-radius: 4px;
+    border-radius: 8px;
     max-width: 200px;
     position: relative;
     vertical-align: top;
@@ -480,12 +480,17 @@ h3 {
     .user-actions {
         gap: 5px;
     }
+
 }
 
 @media (hover: none) {
-    .showcase-img:hover {
+    .showcase-item:hover {
         transform: none;
         filter: none;
+    }
+
+    .showcase-item:hover .showcase-button {
+        display: none;
     }
 }
 

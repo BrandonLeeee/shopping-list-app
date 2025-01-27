@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ShoppingCartContext } from "../context/ShoppingCartContext";
+import { ShoppingCartContext } from "../contexts/ShoppingCartContext";
 import { Button } from "./ui/button";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
@@ -14,11 +14,11 @@ const ShoppingCart = () => {
         {shoppingCart.length > 0 ? (
           <div>
             {shoppingCart.map((item, index) => (
-              <div key={item.id} className="max-h-custom180 h-full">
+              <div key={item.id} className="max-h-custom180">
                 <div
                   className={`flex justify-between gap-4 items-center ${
                     index === 0 ? "border-t" : ""
-                  } border-b border-l-0 border-r-0 pt-4 pb-4 h-full`}
+                  } border-b border-l-0 border-r-0 pt-4 pb-4`}
                 >
                   <img
                     className="w-1/4 max-h-custom180 bg-gray-200 rounded-md"
