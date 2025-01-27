@@ -3,7 +3,11 @@ import { createContext, useEffect, useState } from "react";
 export const ShoppingCartContext = createContext();
 
 export const ShoppingCartProvider = ({ children }) => {
-  const [shoppingCart, setShoppingCart] = useState([]);
+  const [shoppingCart, setShoppingCart] = useState(() => {
+    // Retrieve the cart from localStorage (or return an empty array if not found)
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
   const [totalCart, setTotalCart] = useState([]);
 
   const addToCart = (item) => {
@@ -24,7 +28,6 @@ export const ShoppingCartProvider = ({ children }) => {
     });
   };
 
-  // Increment function for use in the increment button
   const incrementQty = (id) => {
     setShoppingCart((prevCart) =>
       prevCart.map((prevItem) =>
@@ -33,7 +36,6 @@ export const ShoppingCartProvider = ({ children }) => {
     );
   };
 
-  // Decrement function for use in the decrement button
   const decrementQty = (id) => {
     setShoppingCart((prevCart) =>
       prevCart
@@ -44,8 +46,9 @@ export const ShoppingCartProvider = ({ children }) => {
     );
   };
 
-  // Update the total amount of the cart
+  // Update the total amount of the cart & persist the cart to localStorage whenever it changes
   useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(shoppingCart));
     const newTotal = shoppingCart.reduce(
       (total, item) => total + item.price * item.qty,
       0
