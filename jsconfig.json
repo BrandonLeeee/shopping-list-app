@@ -1,11 +1,13 @@
 {
-  "compilerOptions": {
-    "target": "ES6", // Specify ECMAScript version
-    "module": "commonjs",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
+    "compilerOptions": {
+      // ...
+      "baseUrl": ".",
+      "paths": {
+        "@/*": [
+          "./src/*"
+        ]
+      }
+      // ...
     }
-    // ...
   }
-}
+  
