@@ -46,7 +46,7 @@ const ItemDetails = () => {
 
   return (
     <div className="bg-white">
-      <div className="pt-6 max-w-custom1382 mx-auto">
+      <div className="pt-6 max-w-[1382px] mx-auto">
         <div className="text-left mb-5 flex flex-col lg:mx-auto">
           {/* Image Gallery */}
           <div className=" flex items-center justify-center bg-gray-200 rounded-md h-full mx-3 sm:mx-4 md:mx-6">
