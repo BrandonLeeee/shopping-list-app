@@ -6,6 +6,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
+import Autoplay from "embla-carousel-autoplay";
 
 const Slider = ({ data }) => {
   const [screenSize, setScreenSize] = useState(window.innerWidth <= 768);
@@ -20,7 +21,14 @@ const Slider = ({ data }) => {
   return (
     <>
       {screenSize ? (
-        <Carousel className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto">
+        <Carousel
+          plugins={[
+            Autoplay({
+              delay: 2500,
+            }),
+          ]}
+          className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto"
+        >
           <CarouselContent>
             {data.images
               .filter((img) => img !== undefined)
