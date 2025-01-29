@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { Button } from "@/components/ui/button";
 import IsLoading from "@/components/IsLoading";
-import { useContext, useEffect, useRef } from "react";
+import { useContext } from "react";
 import { ShoppingCartContext } from "@/contexts/ShoppingCartContext";
 import { toast } from "sonner";
+import Slider from "@/components/Slider";
 
 const ItemDetails = () => {
   const { urlId } = useParams();
@@ -48,22 +49,8 @@ const ItemDetails = () => {
       <div className="pt-6 max-w-custom1382 mx-auto">
         <div className="text-left mb-5 flex flex-col lg:mx-auto">
           {/* Image Gallery */}
-          <div className="flex-1 flex items-center justify-center bg-gray-200 rounded-md h-full mx-3 sm:mx-4 md:mx-6">
-            <div className="flex md:flex-row justify-center items-center gap-4 mb-4 flex-col">
-              {[data.images[1], data.images[0], data.images[2]]
-                .filter((img) => img !== undefined)
-                .map(
-                  (img, index) =>
-                    img != undefined && (
-                      <img
-                        key={index}
-                        alt={data.title}
-                        src={img}
-                        className="w-1/2 h-auto md:w-1/4 rounded-lg object-cover"
-                      />
-                    )
-                )}
-            </div>
+          <div className=" flex items-center justify-center bg-gray-200 rounded-md h-full mx-3 sm:mx-4 md:mx-6">
+            <Slider data={data} />
           </div>
 
           {/* Data Info */}

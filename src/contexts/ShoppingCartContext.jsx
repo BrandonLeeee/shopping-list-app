@@ -31,7 +31,6 @@ export const ShoppingCartProvider = ({ children }) => {
     });
   };
 
-  // Increment function for use in the increment button
   const incrementQty = (id) => {
     setShoppingCart((prevCart) =>
       prevCart.map((prevItem) =>
@@ -40,7 +39,6 @@ export const ShoppingCartProvider = ({ children }) => {
     );
   };
 
-  // Decrement function for use in the decrement button
   const decrementQty = (id) => {
     setShoppingCart((prevCart) =>
       prevCart
