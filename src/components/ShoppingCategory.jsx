@@ -20,10 +20,10 @@ const ShoppingCategory = () => {
 
   return (
     <div className="flex-column">
-      <h3 className="text-xl">
+      <h3 className="text-start mt-4 mb-1.5 text-xl">
         Shop from <span className="text-blue-400">Categories</span>
       </h3>
-      <div className="underline"></div>
+      <div className="underline bg-gray-200"></div>
       <div className="categories-container">
         {categoriesLoading ? (
           <span>Loading...</span>

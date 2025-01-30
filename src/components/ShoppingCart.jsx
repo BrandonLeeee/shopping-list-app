@@ -1,18 +1,24 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../contexts/ShoppingCartContext";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const ShoppingCart = () => {
-  const { shoppingCart, totalCart, incrementQty, decrementQty } =
+  const { shoppingCart, totalCart, incrementQty, decrementQty, clearCart } =
     useContext(ShoppingCartContext);
 
   return (
     <div className="w-full p-5 flex flex-col justify-center items-center ">
       <div className="w-full h-full p-5 flex flex-col justify-center items-center">
-        <h3 className="font-bold text-4xl mb-7">Shopping Cart</h3>
         {shoppingCart.length > 0 ? (
           <div>
+            <div className="flex items-center justify-between mb-7">
+              <h3 className="font-bold text-4xl">Shopping Cart</h3>
+              <Button size={"sm"} onClick={clearCart}>
+                Remove All
+              </Button>
+            </div>
             {shoppingCart.map((item, index) => (
               <div key={item.id} className="max-h-custom180">
                 <div
@@ -75,9 +81,13 @@ const ShoppingCart = () => {
           </div>
         ) : (
           <>
+            <h3 className="font-bold text-4xl">Shopping Cart</h3>
+
             <p className="p-5">Your cart is empty.</p>
             <div>
-              <Button className="">Continue Shopping</Button>
+              <Link to="/" className={buttonVariants()}>
+                Continue Shopping
+              </Link>
             </div>
           </>
         )}

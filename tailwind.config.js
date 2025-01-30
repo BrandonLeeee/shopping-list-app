@@ -11,7 +11,6 @@ module.exports = {
         75: "75%",
         80: "80%",
         90: "90%",
-        custom179: "180px",
       },
       maxHeight: {
         50: "50%",
@@ -21,6 +20,9 @@ module.exports = {
         80: "80%",
         90: "90%",
         custom180: "180px",
+      },
+      minHeight: {
+        90: "90vh",
       },
       gridTemplateRows: {
         "[auto,auto,1fr]": "auto auto 1fr",

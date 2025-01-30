@@ -30,7 +30,7 @@ const ItemsByCategory = () => {
     <>
       <div className="flex-column">
         <div className="section-title">
-          <h3>
+          <h3 className="text-start text-xl mt-4 mb-1.5">
             Grab the{" "}
             <span className="highlight">
               {" "}
@@ -38,7 +38,7 @@ const ItemsByCategory = () => {
               <span className="capitalize">{data.products[0].category}</span>
             </span>
           </h3>
-          <div className="underline"></div>
+          <div className="underline bg-gray-200"></div>
         </div>
         <div className={"items-container"}>
           {loading ? (

@@ -50,7 +50,7 @@ const Header = () => {
           </div>
 
           <div className="user-actions">
-            <Link to="/" className="account">
+            <Link to="/login" className="account">
               <div className="icon">
                 <Button
                   variant="outline"

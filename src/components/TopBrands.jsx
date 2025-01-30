@@ -21,10 +21,10 @@ const TopBrands = () => {
 
   return (
     <div className="flex-column">
-      <h3 className="text-xl">
+      <h3 className="text-start mt-4 mb-1.5 text-xl">
         Top <span className="text-blue-400">Eletronics Brand</span>
       </h3>
-      <div className="underline"></div>
+      <div className="underline bg-gray-200"></div>
       <div className="showcase-brand">
         {topBrands.map((brand, index) => (
           <div key={index}>

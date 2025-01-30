@@ -6,6 +6,8 @@ import Cart from "./pages/Cart";
 import ItemDetails from "./pages/ItemDetails";
 import ItemsByCategory from "./pages/ItemsByCategory";
 import Providers from "./app/Providers";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
               element={<ItemsByCategory />}
             />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
           </Route>
         </Routes>
       </Providers>

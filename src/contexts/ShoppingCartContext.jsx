@@ -49,6 +49,11 @@ export const ShoppingCartProvider = ({ children }) => {
     );
   };
 
+  const clearCart = () => {
+    setShoppingCart([]);
+    localStorage.removeItem("cart");
+  };
+
   // Update the total amount of the cart
   useEffect(() => {
     if (shoppingCart.length > 0) {
@@ -63,7 +68,14 @@ export const ShoppingCartProvider = ({ children }) => {
 
   return (
     <ShoppingCartContext.Provider
-      value={{ shoppingCart, totalCart, addToCart, incrementQty, decrementQty }}
+      value={{
+        shoppingCart,
+        totalCart,
+        addToCart,
+        incrementQty,
+        decrementQty,
+        clearCart,
+      }}
     >
       {children}
     </ShoppingCartContext.Provider>
