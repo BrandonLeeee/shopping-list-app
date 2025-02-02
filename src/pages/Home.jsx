@@ -1,21 +1,26 @@
 import ShoppingList from "../components/ShoppingList";
 import ShoppingCategory from "../components/ShoppingCategory";
 import TopBrands from "@/components/TopBrands";
-import { useContext } from "react";
-import { SearchContext } from "@/contexts/SearchContext";
-import SearchResults from "./SearchResuts";
+import IsLoading from "@/components/IsLoading";
+import { useLoading } from "@/contexts/LoadingContext";
 
 const Home = () => {
-  const useSearch = () => useContext(SearchContext);
-  const { search } = useSearch();
+  const { loading } = useLoading();
 
   return (
     <>
-      <div>
-        <ShoppingList />
-        <ShoppingCategory />
-        <TopBrands />
-      </div>
+      {loading ? (
+        <div className="min-h-90 flex justify-center items-center">
+          {" "}
+          <IsLoading />
+        </div>
+      ) : (
+        <div>
+          <ShoppingList />
+          <ShoppingCategory />
+          <TopBrands />
+        </div>
+      )}
     </>
   );
 };

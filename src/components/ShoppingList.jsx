@@ -3,11 +3,13 @@ import ShoppingItem from "./ShoppingItem";
 import { ShoppingCartContext } from "../contexts/ShoppingCartContext";
 import useFetch from "../hooks/useFetch";
 import IsLoading from "./IsLoading";
+import { useLoading } from "@/contexts/LoadingContext";
 
 const ShoppingList = () => {
-  const { data, loading, error } = useFetch(
+  const { data, error } = useFetch(
     "https://dummyjson.com/products/category/laptops"
   );
+  const { loading } = useLoading();
 
   const { addToCart } = useContext(ShoppingCartContext);
 
@@ -15,14 +17,9 @@ const ShoppingList = () => {
     addToCart(item);
   };
 
-  if (loading)
-    return (
-      <div>
-        <IsLoading />
-      </div>
-    );
+  if (loading) return <div></div>;
   if (error) return <div>Error: {error.message}</div>;
-  if (!data) return <div>No data found</div>;
+  if (!data) return <div></div>;
 
   return (
     <>

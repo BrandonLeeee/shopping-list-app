@@ -1,13 +1,14 @@
 import React from "react";
 import useFetch from "../hooks/useFetch";
 import ShoppingItemCategory from "./ShoppingItemCategory";
+import { useLoading } from "@/contexts/LoadingContext";
 
 const ShoppingCategory = () => {
-  const {
-    data: categoriesData,
-    loading: categoriesLoading,
-    error: categoriesError,
-  } = useFetch("https://dummyjson.com/products/categories/");
+  const { data, error } = useFetch(
+    "https://dummyjson.com/products/categories/"
+  );
+
+  const { loading } = useLoading();
 
   const categoryImages = {
     0: "https://www.regentsparkpharmacy.com.au/cdn/shop/files/larocheposay_mela_b3_serum.png?v=1722499055&width=1214",
@@ -18,6 +19,10 @@ const ShoppingCategory = () => {
     5: "https://atlas-content-cdn.pixelsquid.com/assets_v2/10/1024073280933336794/jpeg-600/G11.jpg?modifiedAt=1",
   };
 
+  if (loading) return <div></div>;
+  if (error) return <div>Error: {error.message}</div>;
+  if (!data) return <div></div>;
+
   return (
     <div className="flex-column">
       <h3 className="text-start mt-4 mb-1.5 text-xl">
@@ -25,20 +30,14 @@ const ShoppingCategory = () => {
       </h3>
       <div className="underline bg-gray-200"></div>
       <div className="categories-container">
-        {categoriesLoading ? (
-          <span>Loading...</span>
-        ) : (
-          categoriesData
-            .slice(0, 6)
-            .map((category, index) => (
-              <ShoppingItemCategory
-                key={index}
-                categorySlug={category.slug}
-                categoryName={category.name}
-                categoryImg={categoryImages[index]}
-              />
-            ))
-        )}
+        {data.slice(0, 6).map((category, index) => (
+          <ShoppingItemCategory
+            key={index}
+            categorySlug={category.slug}
+            categoryName={category.name}
+            categoryImg={categoryImages[index]}
+          />
+        ))}
       </div>
     </div>
   );

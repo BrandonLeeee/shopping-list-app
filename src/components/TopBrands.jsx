@@ -1,6 +1,9 @@
+import { useLoading } from "@/contexts/LoadingContext";
+import useFetch from "@/hooks/useFetch";
 import React from "react";
 
 const TopBrands = () => {
+  const { loading } = useLoading();
   const topBrands = [
     {
       brand: "Apple",

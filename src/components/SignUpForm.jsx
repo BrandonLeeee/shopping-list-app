@@ -9,25 +9,29 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import useAuth from "@/hooks/useAuth";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
+import IsLoading from "./IsLoading";
+import { AuthContext } from "@/contexts/AuthContext";
+import { useLoading } from "@/contexts/LoadingContext";
 
 export function SignUpForm({ className, ...props }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { handleSignIn, error, setError, loading } = useAuth(email, password);
+  const [displayName, setDisplayName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const { handleSignUp, error, setError } = useContext(AuthContext);
+  const { loading } = useLoading();
 
   const handleForm = (e) => {
     e.preventDefault();
-    alert("Component in Development!");
+    handleSignUp(email, password, displayName, phoneNumber);
+    setEmail("");
+    setPassword("");
+    setDisplayName("");
+    setPhoneNumber("");
   };
-
-  if (error) {
-    toast(error, { duration: 2000 });
-    setError("");
-  }
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -47,6 +51,8 @@ export function SignUpForm({ className, ...props }) {
                   <Input
                     id="name"
                     type="name"
+                    value={displayName}
+                    onChange={(e) => setDisplayName(e.target.value)}
                     placeholder="Brandon Lee"
                     required
                   />
@@ -60,7 +66,20 @@ export function SignUpForm({ className, ...props }) {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="m@example.com"
+                    placeholder="brandon@leetech.com"
+                    required
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="phone" className="text-start">
+                    Phone Number
+                  </Label>
+                  <Input
+                    id="phone"
+                    type="text"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    placeholder="+61 123456789"
                     required
                   />
                 </div>
@@ -82,9 +101,15 @@ export function SignUpForm({ className, ...props }) {
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full">
-                  Sign Up
-                </Button>
+                {loading ? (
+                  <div>
+                    <IsLoading />
+                  </div>
+                ) : (
+                  <Button type="submit" className="w-full">
+                    Sign Up
+                  </Button>
+                )}
               </div>
               <div className="text-center text-sm">
                 Already have an account?{" "}

@@ -1,7 +1,7 @@
 const IsLoading = () => {
   return (
     <div>
-      <div className="flex m-auto min-h-screen justify-center items-center ">
+      <div className="m-auto">
         <div role="status">
           <svg
             aria-hidden="true"
@@ -22,7 +22,6 @@ const IsLoading = () => {
           <span className="sr-only">Loading...</span>
         </div>
       </div>
-      ;
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
-import { MdShoppingCart } from "react-icons/md";
+import { MdShoppingCart, MdOutlineLogout } from "react-icons/md";
 import { CiUser } from "react-icons/ci";
 import { Toaster } from "sonner";
 import { ShoppingCartContext } from "../contexts/ShoppingCartContext";
@@ -8,16 +8,19 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { SearchContext } from "@/contexts/SearchContext";
 import SearchResults from "@/pages/SearchResuts";
+import IsLoading from "./IsLoading";
+import { AuthContext } from "@/contexts/AuthContext";
+import { useLoading } from "@/contexts/LoadingContext";
 
 const Header = () => {
-  const { shoppingCart } = useContext(ShoppingCartContext);
   const [count, setCount] = useState(0);
   const useSearch = () => useContext(SearchContext);
   const { search, onSearchChange } = useSearch();
+  const { user, handleSignOut } = useContext(AuthContext);
+  const { loading } = useLoading();
+  const { shoppingCart } = useContext(ShoppingCartContext);
 
-  {
-    /*Update badge counter */
-  }
+  //Update badge counter
   useEffect(() => {
     if (shoppingCart.length === 0) {
       setCount(0);
@@ -32,16 +35,27 @@ const Header = () => {
     setCount(badgeCount);
   }, [shoppingCart]);
 
+  const renderContent = () => {
+    if (loading) {
+      return <IsLoading />;
+    }
+    if (user && user.name) {
+      return <p className="hidden 530:block">{user.name.split(" ")[0]}</p>;
+    }
+
+    return <p className="hidden 530:block">Account</p>;
+  };
+
   return (
     <>
       <header className="py-2 360:py-5 bg-gray-200">
-        <div className="flex flex-col items-center justify-between 360:flex-row 360:justify-between max-w-[1382px] mx-auto px-2 360:py-0 360:px-5">
+        <div className="flex flex-col items-center justify-between xs:flex-row 360:justify-between max-w-[1382px] mx-auto px-2 360:py-0 360:px-5">
           <Link to="/" className="link">
-            <h1 className="text-4xl font-semibold mb-3 360:mb-0">LeeTech</h1>
+            <h1 className="text-4xl font-semibold mb-3 xs:mb-0">LeeTech</h1>
           </Link>
           <div className="w-full mx-4">
             <input
-              className="flex h-9 mb-3 360:mb-0 w-full rounded-md border border-input bg-white px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm  min-w-[130px] max-w-[400px] mx-auto"
+              className="flex h-9 mb-3 xs:mb-0 w-full rounded-md border border-input bg-white px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm  min-w-[130px] max-w-[400px] mx-auto"
               type="text"
               value={search}
               onChange={onSearchChange}
@@ -50,18 +64,25 @@ const Header = () => {
           </div>
 
           <div className="user-actions">
-            <Link to="/login" className="account">
-              <div className="icon">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  aria-label="Notifications"
-                >
-                  <CiUser />
-                </Button>
-              </div>
-              <p>Account</p>
-            </Link>
+            <div className="flex items-center">
+              <Link to={user ? "/account" : "/login"} className="account">
+                <div className="icon">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    aria-label="Notifications"
+                  >
+                    <CiUser />
+                  </Button>
+                </div>
+                {renderContent()}
+              </Link>
+              {user && (
+                <p className="cursor-pointer">
+                  <MdOutlineLogout onClick={handleSignOut} />
+                </p>
+              )}
+            </div>
             <Link to="/cart" className="cart">
               <Button
                 variant="outline"
@@ -76,7 +97,7 @@ const Header = () => {
                   </Badge>
                 )}
               </Button>
-              <p>Cart</p>
+              <p className="hidden 530:block">Cart</p>
             </Link>
           </div>
         </div>

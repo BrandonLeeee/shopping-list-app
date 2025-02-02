@@ -9,14 +9,13 @@ const SearchResults = ({ extQuery }) => {
     `https://dummyjson.com/products/search?q=${extQuery}`
   );
   const { addToCart } = useContext(ShoppingCartContext);
-
   const handeAddToCart = (item) => {
     addToCart(item);
   };
 
   if (loading)
     return (
-      <div>
+      <div className="min-h-screen flex justify-center items-center">
         <IsLoading />
       </div>
     );

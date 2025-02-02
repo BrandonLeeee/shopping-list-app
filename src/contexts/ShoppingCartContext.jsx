@@ -1,4 +1,6 @@
+import { addUserOrder } from "@/services/firestoreService";
 import { createContext, useEffect, useState } from "react";
+import { toast } from "sonner";
 
 export const ShoppingCartContext = createContext();
 
@@ -21,12 +23,27 @@ export const ShoppingCartProvider = ({ children }) => {
       if (existingItem) {
         return prevCart.map((prevItem) =>
           prevItem.id === item.id
-            ? { ...prevItem, qty: prevItem.qty + 1 }
+            ? {
+                id: item.id,
+                title: item.title,
+                thumbnail: item.thumbnail,
+                price: item.price,
+                qty: prevItem.qty + 1,
+              }
             : prevItem
         );
       } else {
         // Add a new item
-        return [...prevCart, { ...item, qty: 1 }];
+        return [
+          ...prevCart,
+          {
+            id: item.id,
+            title: item.title,
+            thumbnail: item.thumbnail,
+            price: item.price,
+            qty: 1,
+          },
+        ];
       }
     });
   };
@@ -54,6 +71,11 @@ export const ShoppingCartProvider = ({ children }) => {
     localStorage.removeItem("cart");
   };
 
+  const postOrder = async (userId) => {
+    await addUserOrder(userId, { items: shoppingCart, totalCart });
+    clearCart();
+  };
+
   // Update the total amount of the cart
   useEffect(() => {
     if (shoppingCart.length > 0) {
@@ -74,6 +96,7 @@ export const ShoppingCartProvider = ({ children }) => {
         addToCart,
         incrementQty,
         decrementQty,
+        postOrder,
         clearCart,
       }}
     >

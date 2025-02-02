@@ -19,7 +19,7 @@ const ItemsByCategory = () => {
 
   if (loading)
     return (
-      <div>
+      <div className="min-h-screen flex justify-center items-center">
         <IsLoading />
       </div>
     );

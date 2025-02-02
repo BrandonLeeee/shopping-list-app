@@ -24,9 +24,6 @@ module.exports = {
       minHeight: {
         90: "90vh",
       },
-      gridTemplateRows: {
-        "[auto,auto,1fr]": "auto auto 1fr",
-      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -35,8 +32,20 @@ module.exports = {
       screens: {
         360: "360px",
         xs: "430px",
+        530: "530px",
       },
-      colors: {},
+      colors: {
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

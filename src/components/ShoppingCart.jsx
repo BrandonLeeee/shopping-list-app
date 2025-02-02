@@ -2,11 +2,29 @@ import { useContext } from "react";
 import { ShoppingCartContext } from "../contexts/ShoppingCartContext";
 import { Button, buttonVariants } from "./ui/button";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "@/contexts/AuthContext";
 
 const ShoppingCart = () => {
-  const { shoppingCart, totalCart, incrementQty, decrementQty, clearCart } =
-    useContext(ShoppingCartContext);
+  const {
+    shoppingCart,
+    totalCart,
+    incrementQty,
+    decrementQty,
+    clearCart,
+    postOrder,
+  } = useContext(ShoppingCartContext);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleAddOrder = (e) => {
+    e.preventDefault();
+    if (user) {
+      postOrder(user.id);
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <div className="w-full p-5 flex flex-col justify-center items-center ">
@@ -75,7 +93,7 @@ const ShoppingCart = () => {
                 <div className="text-xl">{`$ ${totalCart}`}</div>
               </div>
               <div>
-                <Button className="">Go to checkout</Button>
+                <Button onClick={handleAddOrder}>Go to checkout</Button>
               </div>
             </div>
           </div>
