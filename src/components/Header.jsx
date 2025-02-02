@@ -8,7 +8,7 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { SearchContext } from "@/contexts/SearchContext";
 import SearchResults from "@/pages/SearchResuts";
-import IsLoading from "./IsLoading";
+import IsLoading from "./ui/IsLoading";
 import { AuthContext } from "@/contexts/AuthContext";
 import { useLoading } from "@/contexts/LoadingContext";
 

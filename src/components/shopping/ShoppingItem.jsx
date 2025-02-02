@@ -1,4 +1,4 @@
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -18,7 +18,7 @@ const ShoppingItem = ({
 
   const handleClick = () => {
     onClick();
-    toast(`${itemName} has been added!`, {
+    toast.success(`${itemName} was successfully added!`, {
       duration: 2000,
     });
   };

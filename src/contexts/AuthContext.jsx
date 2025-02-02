@@ -1,11 +1,5 @@
-import {
-  createContext,
-  useState,
-  useEffect,
-  useContext,
-  useCallback,
-} from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { createContext, useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   auth,
   signInWithEmailAndPassword,
@@ -13,9 +7,9 @@ import {
   onAuthStateChanged,
   updateProfile,
   signOut,
-} from "@/config/firebase";
-import { addUserData } from "../services/firestoreService";
+} from "@/config/firebaseConfig";
 import { useLoading } from "./LoadingContext";
+import useFirestore from "@/hooks/useFirestore";
 
 export const AuthContext = createContext();
 
@@ -23,6 +17,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const { setLoading } = useLoading();
   const [error, setError] = useState("");
+  const { addUserData } = useFirestore();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -92,9 +87,8 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
       }
     },
-    [navigate, setUser, setError]
+    [navigate]
   );
-
   const handleSignOut = useCallback(async () => {
     setLoading(true);
     setUser(null);

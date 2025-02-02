@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import ShoppingItem from "../components/ShoppingItem";
+import ShoppingItem from "../components/shopping/ShoppingItem";
 import { ShoppingCartContext } from "../contexts/ShoppingCartContext";
 import useFetch from "../hooks/useFetch";
-import IsLoading from "../components/IsLoading";
+import IsLoading from "../components/ui/IsLoading";
 
 const SearchResults = ({ extQuery }) => {
   const { data, loading, error } = useFetch(
@@ -15,7 +15,7 @@ const SearchResults = ({ extQuery }) => {
 
   if (loading)
     return (
-      <div className="min-h-screen flex justify-center items-center">
+      <div className="min-h-[70vh] sm:min-h-90 flex justify-center items-center">
         <IsLoading />
       </div>
     );

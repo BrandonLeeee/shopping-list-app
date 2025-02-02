@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import ShoppingItem from "./ShoppingItem";
-import { ShoppingCartContext } from "../contexts/ShoppingCartContext";
-import useFetch from "../hooks/useFetch";
-import IsLoading from "./IsLoading";
+import { ShoppingCartContext } from "../../contexts/ShoppingCartContext";
+import useFetch from "../../hooks/useFetch";
+import IsLoading from "../ui/IsLoading";
 import { useLoading } from "@/contexts/LoadingContext";
 
 const ShoppingList = () => {

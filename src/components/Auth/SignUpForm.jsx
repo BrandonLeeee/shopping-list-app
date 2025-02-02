@@ -12,7 +12,7 @@ import { Label } from "@/components/ui/label";
 import { useContext, useState } from "react";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
-import IsLoading from "./IsLoading";
+import IsLoading from "../ui/IsLoading";
 import { AuthContext } from "@/contexts/AuthContext";
 import { useLoading } from "@/contexts/LoadingContext";
 
@@ -32,6 +32,11 @@ export function SignUpForm({ className, ...props }) {
     setDisplayName("");
     setPhoneNumber("");
   };
+
+  if (error) {
+    toast(error, { duration: 2000 });
+    setError("");
+  }
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>

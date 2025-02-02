@@ -1,12 +1,16 @@
-import { addUserOrder } from "@/services/firestoreService";
+import useFirestore from "@/hooks/useFirestore";
 import { createContext, useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useLoading } from "./LoadingContext";
 
 export const ShoppingCartContext = createContext();
 
 export const ShoppingCartProvider = ({ children }) => {
   const [shoppingCart, setShoppingCart] = useState([]);
   const [totalCart, setTotalCart] = useState([]);
+  const [error, setError] = useState(null);
+  const { addUserOrder } = useFirestore();
+  const { setLoading } = useLoading();
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
@@ -72,8 +76,16 @@ export const ShoppingCartProvider = ({ children }) => {
   };
 
   const postOrder = async (userId) => {
-    await addUserOrder(userId, { items: shoppingCart, totalCart });
-    clearCart();
+    setLoading(true);
+    try {
+      await addUserOrder(userId, { items: shoppingCart, totalCart });
+      toast.success("Order processed successfully!", { duration: 2000 });
+    } catch (error) {
+      setError(error);
+    } finally {
+      clearCart();
+      setLoading(false);
+    }
   };
 
   // Update the total amount of the cart

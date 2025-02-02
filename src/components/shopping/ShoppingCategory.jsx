@@ -1,5 +1,5 @@
 import React from "react";
-import useFetch from "../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import ShoppingItemCategory from "./ShoppingItemCategory";
 import { useLoading } from "@/contexts/LoadingContext";
 

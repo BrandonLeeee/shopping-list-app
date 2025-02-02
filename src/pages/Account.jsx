@@ -1,12 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
-import {
-  addUserPayment,
-  getUserById,
-  updateUserData,
-} from "../services/firestoreService";
-import IsLoading from "@/components/IsLoading";
+import IsLoading from "@/components/ui/IsLoading";
 import AccountTabs from "@/components/Account/AccountTabs";
+import useFirestore from "@/hooks/useFirestore";
 
 export default function Account() {
   const [isEditing, setIsEditing] = useState(false);
@@ -14,6 +10,7 @@ export default function Account() {
   const [customerInfo, setCustomerInfo] = useState(null);
   const [customerOrders, setCustomerOrders] = useState(null);
   const [customerPayments, setCustomerPayments] = useState(null);
+  const { addUserPayment, getUserById, updateUserData } = useFirestore();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -59,14 +56,14 @@ export default function Account() {
 
   if (!customerInfo) {
     return (
-      <div className="min-h-screen flex justify-center items-center">
+      <div className="min-h-[70vh] sm:min-h-90 flex justify-center items-center">
         <IsLoading />
       </div>
     );
   }
 
   return (
-    <div className="grid min-h-screenw-full">
+    <div className="grid min-h-screen w-full">
       <div className="flex flex-col mx-auto w-full max-w-[1382px] px-2 360:py-0 360:px-2">
         <main className="flex flex-1 flex-col gap-4 py-4 md:gap-8 md:y-6">
           <AccountTabs

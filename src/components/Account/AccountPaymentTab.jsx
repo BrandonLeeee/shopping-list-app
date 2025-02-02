@@ -19,8 +19,11 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { useLoading } from "@/contexts/LoadingContext";
+import IsLoading from "../ui/IsLoading";
 
 const AccountPaymentTab = ({ customerPayments, handlePaymentClick }) => {
+  const { loading } = useLoading();
   const [cardDetails, setCardDetails] = useState({
     cardNumber: "",
     expiryDate: "",
@@ -170,7 +173,13 @@ const AccountPaymentTab = ({ customerPayments, handlePaymentClick }) => {
               </div>
             </div>
             <CardFooter>
-              <Button>Add Payment Method</Button>
+              {loading ? (
+                <>
+                  <IsLoading /> <p className="mx-2">Saving...</p>
+                </>
+              ) : (
+                <Button>Add Payment Method</Button>
+              )}
             </CardFooter>
           </form>
         </div>

@@ -9,6 +9,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import IsLoading from "@/components/ui/IsLoading";
+import { useLoading } from "@/contexts/LoadingContext";
 
 const AccountProfileTab = ({
   customerInfo,
@@ -16,6 +18,8 @@ const AccountProfileTab = ({
   handleEditToggle,
   isEditing,
 }) => {
+  const { loading } = useLoading();
+
   return (
     <Card>
       <CardHeader>
@@ -74,9 +78,13 @@ const AccountProfileTab = ({
             </div>
           </div>
           <CardFooter>
-            <Button type="submit">
-              {isEditing ? "Save Changes" : "Edit Profile"}
-            </Button>
+            {loading ? (
+              <>
+                <IsLoading /> <p className="mx-2">Saving...</p>
+              </>
+            ) : (
+              <Button>{isEditing ? "Save Changes" : "Edit Profile"}</Button>
+            )}
           </CardFooter>
         </form>
       </CardContent>

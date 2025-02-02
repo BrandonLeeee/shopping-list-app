@@ -2,7 +2,7 @@ import useFetch from "@/hooks/useFetch";
 import { useParams } from "react-router-dom";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { Button } from "@/components/ui/button";
-import IsLoading from "@/components/IsLoading";
+import IsLoading from "@/components/ui/IsLoading";
 import { useContext } from "react";
 import { ShoppingCartContext } from "@/contexts/ShoppingCartContext";
 import { toast } from "sonner";
@@ -20,14 +20,14 @@ const ItemDetails = () => {
 
     addToCart(data);
 
-    toast(`${data.title} has been added!`, {
+    toast.success(`${data.title} was successfully added!`, {
       duration: 2000,
     });
   };
 
   if (loading)
     return (
-      <div className="min-h-screen flex justify-center items-center">
+      <div className="min-h-[70vh] sm:min-h-90 flex justify-center items-center">
         <IsLoading />
       </div>
     );
@@ -65,12 +65,12 @@ const ItemDetails = () => {
               </span>
 
               {/* Description */}
-              <div className="py-10">
+              <div className="py-3 sm:py-4 md:py-8 lg:py-10">
                 <h3 className="sr-only">Description</h3>
                 <div className="space-y-6">
                   <p className="text-xl text-gray-900">{data.description}</p>
                 </div>
-                <div className="mt-10">
+                <div className="py-3 sm:py-4 md:py-8 lg:py-10">
                   <h3 className="text-sm font-medium text-gray-900">
                     Shipping
                   </h3>

@@ -1,8 +1,8 @@
-import IsLoading from "@/components/IsLoading";
-import ShoppingItem from "@/components/ShoppingItem";
+import IsLoading from "@/components/ui/IsLoading";
+import ShoppingItem from "@/components/shopping/ShoppingItem";
 import { ShoppingCartContext } from "@/contexts/ShoppingCartContext";
 import useFetch from "@/hooks/useFetch";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
 
 const ItemsByCategory = () => {
@@ -19,7 +19,7 @@ const ItemsByCategory = () => {
 
   if (loading)
     return (
-      <div className="min-h-screen flex justify-center items-center">
+      <div className="min-h-[70vh] sm:min-h-90 flex justify-center items-center">
         <IsLoading />
       </div>
     );
