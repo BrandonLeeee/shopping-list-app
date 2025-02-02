@@ -10,6 +10,7 @@ import {
 } from "@/config/firebaseConfig";
 import { useLoading } from "./LoadingContext";
 import useFirestore from "@/hooks/useFirestore";
+import { toast } from "sonner";
 
 export const AuthContext = createContext();
 
@@ -46,6 +47,7 @@ export const AuthProvider = ({ children }) => {
       } catch (error) {
         setError(error.message);
       } finally {
+        toast.success("You're now logged in!", { duration: 2000 });
         setLoading(false);
       }
     },
@@ -79,7 +81,6 @@ export const AuthProvider = ({ children }) => {
         await addUserData(newUser.uid, userData);
 
         setUser(userData);
-
         navigate("/");
       } catch (error) {
         setError(error.message);
