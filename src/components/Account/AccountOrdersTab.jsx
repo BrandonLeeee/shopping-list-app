@@ -110,11 +110,11 @@ const AccountOrdersTab = ({ customerOrders }) => {
                           <ul>
                             {order.items.map((item, index) => (
                               <li
-                                className="flex items-center  justify-between space-x-4 my-4 mx-10"
+                                className="flex items-center  justify-between space-x-4 my-4"
                                 key={index}
                               >
-                                <div>
-                                  <span className="font-semibold">
+                                <div className="flex items-center">
+                                  <span className="font-semibold mr-4">
                                     {item.qty}x{" "}
                                   </span>
                                   <span>{item.title}</span>
