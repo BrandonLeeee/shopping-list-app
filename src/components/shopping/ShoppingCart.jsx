@@ -31,6 +31,7 @@ const ShoppingCart = () => {
 
   const handleClearCart = (e) => {
     e.preventDefault();
+    clearCart();
     toast("All items have been removed from your cart!", { duration: 2000 });
   };
 
