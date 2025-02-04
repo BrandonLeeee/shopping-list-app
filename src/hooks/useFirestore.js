@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useLoading } from "@/contexts/LoadingContext";
 import {
   addDoc,
   collection,
@@ -10,9 +10,9 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
-import { auth, db, updateProfile } from "../config/firebaseConfig";
-import { useLoading } from "@/contexts/LoadingContext";
+import { useCallback } from "react";
 import { toast } from "sonner";
+import { auth, db, updateProfile } from "../config/firebaseConfig";
 
 const useFirestore = () => {
   const { loading, setLoading } = useLoading();
@@ -100,13 +100,11 @@ const useFirestore = () => {
   }, []);
 
   const addUserPayment = async (userId, newPayment) => {
-    setLoading(true);
     try {
       const paymentRef = collection(db, "users", userId, "payments");
       await addDoc(paymentRef, { ...newPayment, createdAt: serverTimestamp() });
     } finally {
       toast.success("Payment added successfully!", { duration: 2000 });
-      setLoading(false);
     }
   };
 

@@ -1,12 +1,13 @@
-import { useContext } from "react";
-import { ShoppingCartContext } from "../../contexts/ShoppingCartContext";
-import { Button, buttonVariants } from "../ui/button";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "@/contexts/AuthContext";
-import { useLoading } from "@/contexts/LoadingContext";
-import IsLoading from "../ui/IsLoading";
+import useFirestore from "@/hooks/useFirestore";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { ShoppingCartContext } from "../../contexts/ShoppingCartContext";
+import PaymentModal from "../PaymentModal";
+import { Button, buttonVariants } from "../ui/button";
+import IsLoading from "../ui/IsLoading";
 
 const ShoppingCart = () => {
   const {
@@ -19,13 +20,48 @@ const ShoppingCart = () => {
   } = useContext(ShoppingCartContext);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const { loading } = useLoading();
-  const handleAddOrder = (e) => {
+  const [loading, setLoading] = useState(false);
+  const [savedCards, setSavedCards] = useState([]);
+  const { addUserPayment, getUserById } = useFirestore();
+  const [showNewPayment, setShowNewPayment] = useState(false);
+
+  useEffect(() => {
+    const fetchSavedCards = async () => {
+      if (user?.id) {
+        try {
+          const userData = await getUserById(user.id);
+          setSavedCards(userData.userPayments);
+        } catch (error) {
+          console.error("Error fetching user payment methods:", error);
+        }
+      }
+    };
+    fetchSavedCards();
+  }, [user?.id, getUserById]);
+
+  const handlePaymentClick = async (paymentData) => {
+    try {
+      await addUserPayment(user.id, paymentData);
+      const userData = await getUserById(user.id);
+      setSavedCards(userData.userPayments);
+    } catch (error) {
+      console.error("Failed to add payment method:", error);
+    }
+  };
+
+  const handleAddOrder = async (e) => {
     e.preventDefault();
-    if (user) {
-      postOrder(user.id);
-    } else {
-      navigate("/login");
+    if (!user) return;
+
+    setLoading(true);
+
+    try {
+      await postOrder(user.id);
+      navigate("/account");
+    } catch (error) {
+      toast.error("Failed to process order:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -113,7 +149,17 @@ const ShoppingCart = () => {
                     <div className="text-xl">{`$ ${totalCart}`}</div>
                   </div>
                   <div>
-                    <Button onClick={handleAddOrder}>Go to checkout</Button>
+                    {!user ? (
+                      <Button onClick={() => navigate("/login")}>
+                        Go to Checkout
+                      </Button>
+                    ) : (
+                      <PaymentModal
+                        savedCards={savedCards}
+                        handlePaymentClick={handlePaymentClick}
+                        handleAddOrder={handleAddOrder}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
