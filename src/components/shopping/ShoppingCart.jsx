@@ -23,7 +23,6 @@ const ShoppingCart = () => {
   const [loading, setLoading] = useState(false);
   const [savedCards, setSavedCards] = useState([]);
   const { addUserPayment, getUserById } = useFirestore();
-  const [showNewPayment, setShowNewPayment] = useState(false);
 
   useEffect(() => {
     const fetchSavedCards = async () => {

@@ -92,7 +92,6 @@ export const AuthProvider = ({ children }) => {
   );
   const handleSignOut = useCallback(async () => {
     setLoading(true);
-    setUser(null);
     try {
       await signOut(auth);
       setUser(null);

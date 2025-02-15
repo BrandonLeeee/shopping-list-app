@@ -1,12 +1,12 @@
-import useFetch from "@/hooks/useFetch";
-import { useParams } from "react-router-dom";
-import { StarIcon } from "@heroicons/react/20/solid";
+import Slider from "@/components/Slider";
 import { Button } from "@/components/ui/button";
 import IsLoading from "@/components/ui/IsLoading";
-import { useContext } from "react";
 import { ShoppingCartContext } from "@/contexts/ShoppingCartContext";
+import useFetch from "@/hooks/useFetch";
+import { StarIcon } from "@heroicons/react/20/solid";
+import { useContext } from "react";
+import { useParams } from "react-router-dom";
 import { toast } from "sonner";
-import Slider from "@/components/Slider";
 
 const ItemDetails = () => {
   const { urlId } = useParams();
@@ -50,7 +50,7 @@ const ItemDetails = () => {
         <div className="text-left mb-5 flex flex-col lg:mx-auto">
           {/* Image Gallery */}
           <div className=" flex items-center justify-center bg-gray-200 rounded-md h-full mx-3 sm:mx-4 md:mx-6">
-            <Slider data={data} />
+            <Slider data={data} loading={loading} />
           </div>
 
           {/* Data Info */}

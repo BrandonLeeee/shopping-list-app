@@ -4,27 +4,19 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { SearchContext } from "@/contexts/SearchContext";
 
-const ShoppingItem = ({
-  itemId,
-  itemName,
-  itemPrice,
-  itemImg,
-  itemBrand,
-  onClick,
-}) => {
+const ShoppingItem = ({ item, onClick }) => {
   const navigate = useNavigate();
 
   const { setSearch } = useContext(SearchContext);
-
   const handleClick = () => {
     onClick();
-    toast.success(`${itemName} was successfully added!`, {
+    toast.success(`${item.title} was successfully added!`, {
       duration: 2000,
     });
   };
 
-  const handleNavigate = (itemId) => {
-    navigate(`/item/${itemId}`);
+  const handleNavigate = (id) => {
+    navigate(`/item/${item.id}`);
     setSearch("");
   };
 
@@ -32,17 +24,17 @@ const ShoppingItem = ({
     <div className="showcase-item">
       <img
         className="showcase-img"
-        src={itemImg}
+        src={item.thumbnail}
         alt="Product Placehold"
-        onClick={() => handleNavigate(itemId)}
+        onClick={() => handleNavigate(item.id)}
       />
       <div className="showcase-wrapper">
         <div className="showcase-item-name">
-          <span className="showcase-item-brand">{itemBrand}</span>
-          <p className="showcase-item-title">{itemName}</p>
+          <span className="showcase-item-brand">{item.brand}</span>
+          <p className="showcase-item-title">{item.title}</p>
         </div>
         <div className="item-price-group">
-          <span className="price-value">{`$ ${itemPrice}`}</span>
+          <span className="price-value">{`$ ${item.price}`}</span>
         </div>
       </div>
       <Button size="sm" className="showcase-button" onClick={handleClick}>

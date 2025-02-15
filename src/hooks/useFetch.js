@@ -1,43 +1,18 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const useFetch = (url) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const fetchData = async () => {
+    const response = await axios.get(url);
+    return response.data;
+  };
 
-  useEffect(() => {
-    let isMounted = true;
+  const { data, error, isFetching, isLoading } = useQuery({
+    queryKey: [url],
+    queryFn: fetchData,
+  });
 
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      setData(null);
-
-      try {
-        const response = await axios.get(url);
-        if (isMounted) {
-          setData(response.data);
-        }
-      } catch (err) {
-        if (isMounted) {
-          setError(err.message);
-        }
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
-      }
-    };
-
-    fetchData();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [url]);
-
-  return { data, loading, error };
+  return { data, isFetching, loading: isLoading, error };
 };
 
 export default useFetch;
