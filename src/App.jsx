@@ -9,10 +9,13 @@ import Providers from "./app/Providers";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import Account from "./pages/Account";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { Toaster } from "./components/ui/sonner";
 
 function App() {
   return (
     <BrowserRouter>
+      <Toaster />
       <Providers>
         <Routes>
           <Route path="/" element={<Header />}>
@@ -24,8 +27,11 @@ function App() {
             />
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/account" element={<Account />} />
             <Route path="/signup" element={<SignUpPage />} />
+
+            <Route element={<ProtectedRoute />}>
+              <Route path="/account" element={<Account />} />
+            </Route>
           </Route>
         </Routes>
       </Providers>

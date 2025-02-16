@@ -1,16 +1,15 @@
-import { useEffect, useState, useContext } from "react";
-import { Outlet, Link } from "react-router-dom";
-import { MdShoppingCart, MdOutlineLogout } from "react-icons/md";
+import { AuthContext } from "@/contexts/AuthContext";
+import { useLoading } from "@/contexts/LoadingContext";
+import { SearchContext } from "@/contexts/SearchContext";
+import SearchResults from "@/pages/SearchResuts";
+import { useContext, useEffect, useState } from "react";
 import { CiUser } from "react-icons/ci";
-import { Toaster } from "sonner";
+import { MdOutlineLogout, MdShoppingCart } from "react-icons/md";
+import { Link, Outlet } from "react-router-dom";
 import { ShoppingCartContext } from "../contexts/ShoppingCartContext";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { SearchContext } from "@/contexts/SearchContext";
-import SearchResults from "@/pages/SearchResuts";
 import IsLoading from "./ui/IsLoading";
-import { AuthContext } from "@/contexts/AuthContext";
-import { useLoading } from "@/contexts/LoadingContext";
 
 const Header = () => {
   const [count, setCount] = useState(0);
@@ -104,8 +103,6 @@ const Header = () => {
       </header>
 
       {search.length > 0 ? <SearchResults extQuery={search} /> : <Outlet />}
-
-      <Toaster />
     </>
   );
 };
