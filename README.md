@@ -2,9 +2,10 @@
 
 A dynamic React application built for practice and learning that simulates a complete shopping experience. This project features a product list, shopping cart functionality, and user authentication, along with order and payment management integrated through Firebase and Firestore.
 
-[Live Demo](https://techlee.vercel.app/)
-## Features
+# 🚀 Live Demo
+[Lee Tech](https://techlee.vercel.app/)
 
+## Features
 
 - **User Authentication**: Secure login and registration using Firebase Authentication.
 - **Order & Payment Processing**: Store and manage orders and payment details directly in Firestore.
