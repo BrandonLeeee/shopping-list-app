@@ -2,7 +2,7 @@ import { AuthContext } from "@/contexts/AuthContext";
 import { useContext, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import IsLoading from "./ui/isLoading";
+import IsLoading from "./ui/IsLoading";
 
 const ProtectedRoute = () => {
   const { user } = useContext(AuthContext);
